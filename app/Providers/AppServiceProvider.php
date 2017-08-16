@@ -38,7 +38,7 @@ class AppServiceProvider extends ServiceProvider
         $api->setAccessToken($accessToken);
         $api->setReturnType(SpotifyWebAPI\SpotifyWebAPI::RETURN_ASSOC);
 
-        \App::singleton(SpotifyController::class, function () use ($api) {
+        $this->app->singleton(SpotifyController::class, function () use ($api) {
             return new SpotifyController($api);
         });
     }
