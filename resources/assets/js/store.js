@@ -25,6 +25,10 @@ export default new Vuex.Store({
 
         storeSongs (state, songs) {
             state.songs = songs;
+        },
+
+        emptyPlaylists (state) {
+            state.playlists = [];
         }
     },
     actions: {
@@ -32,8 +36,8 @@ export default new Vuex.Store({
             commit('setLoading', true);
 
             axios.get('/api/categories')
-                .then(categories => {
-                    commit('storeCategories', categories);
+                .then(({data}) => {
+                    commit('storeCategories', data);
                     commit('setLoading', false);
                 });
         },
@@ -42,8 +46,8 @@ export default new Vuex.Store({
             commit('setLoading', true);
 
             axios.get(`/api/playlists/${id}`)
-                .then(playlists => {
-                    commit('storePlaylists', playlists);
+                .then(({data}) => {
+                    commit('storePlaylists', data);
                     commit('setLoading', false);
                 });
         },
@@ -52,8 +56,8 @@ export default new Vuex.Store({
             commit('setLoading', true);
 
             axios.get(`/api/songs/${userId}/${playlistId}`)
-                .then(songs => {
-                    commit('storeSongs', songs);
+                .then(({data}) => {
+                    commit('storeSongs', data);
                     commit('setLoading', false);
                 });
         }

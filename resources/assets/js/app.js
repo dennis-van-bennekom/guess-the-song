@@ -1,13 +1,13 @@
-import Vue from 'vue';
-import Vuex from 'vuex';
-
 require('./bootstrap');
 
-import store from './store';
-window.store = store;
+import Vue from 'vue';
+import VueRouter from 'vue-router';
+import router from './router';
 
-Vue.component('example', require('./components/Example.vue'));
+Vue.use(VueRouter);
+
+Vue.component('Start', require('./components/ChooseCategory.vue'));
 
 const app = new Vue({
-    el: '#app'
-});
+    router
+}).$mount('#app');
